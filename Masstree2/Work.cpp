@@ -90,23 +90,52 @@ public:
 		{
 			weight--;		//Поскольку новые данные всё равно пишутся поверх старых, удалять
 		}					//старые не имеет смысла. Память это не освободит а что там будет 
-	}						//лежать, ноль или "мусор" - не имеет значения. Поэтому мы просто
-};							//"забываем" про последний элемент.
+	}						//лежать, ноль или "мусор" - не имеет значения. Поэтому мы просто "забываем" про последний элемент.
+	void print()
+	{
+		cout<<"Derevo:";
+		for (int i=0; i<weight; i++)
+		{
+			double ur=log(double(i+1))/log((double)2);
+			if (ur==floor(ur))
+			{
+				cout<<endl<<"Uroven' "<<ur<<": ";
+			}
+			cout<<elem[i].get(DATA);
+		}
+		cout<<endl;
+	}
+};							
 void main()
 {
 	tree tr1;
-	tr1.add(1);
-	tr1.add(1);
-	tr1.add(1);
-	tr1.add(1);
-	tr1.add(1);
-	tr1.del();
-	tr1.del();
-	tr1.del();
-	tr1.add(2);
-	tr1.add(2);
-	tr1.add(2);
-	getch();
+	int act=0;
+	while (act!=4)
+	{
+		cout<<"Chto sdelat'?\n1 - Dobavit' element; 2 - Udalit' element; 3 - Vivesti derevo; 4 - Vyhod\n";
+		cin>>act;
+		switch (act)
+		{
+			case 1:
+				{
+					int a;
+					cout<<"Vvedite znachenie: ";
+					cin>>a;
+					tr1.add(a);
+					break;
+				}
+			case 2:
+				{
+					tr1.del();
+					break;
+				}
+			case 3:
+				{
+					tr1.print();
+					break;
+				}
+		}
+	}
 }
 //								0
 //				1								2
